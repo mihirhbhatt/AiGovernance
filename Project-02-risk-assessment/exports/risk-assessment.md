@@ -69,13 +69,15 @@ We do not currently know whether TalentMatch AI exhibits discriminatory behavior
 
 ## Decision Requested
 
-**Option A — Continue with enhanced oversight (Recommended)**
+### Option A — Continue with enhanced oversight (Recommended)
+
 Permit operation subject to mandatory human review controls and a 90-day remediation roadmap.
 
-**Option B — Suspend pending remediation**
+### Option B — Suspend pending remediation
+
 Suspend use until conformity assessment is complete. Revert to manual CV screening.
 
-**The AI Governance Programme Office recommends Option A.**
+The AI Governance Programme Office recommends Option A.
 
 ---
 
@@ -85,7 +87,14 @@ If immediate controls are not implemented within two weeks, the Office will reco
 
 ---
 
-Attachments: AI Risk Assessment — TalentMatch AI (March 2026)
+### Attachments
 
-Prepared by: AI Governance Programme Office
-Contact: [ai-governance@acme-financial.example]
+AI Risk Assessment — TalentMatch AI (March 2026)
+
+### Prepared by
+
+AI Governance Programme Office
+
+### Contact
+
+[ai-governance@acme-financial.example]
