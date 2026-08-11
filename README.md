@@ -74,4 +74,4 @@ These are designed to be read in order — each project builds conceptual depth 
 
 ---
 
-## > "AI Governance: Applied, Not Abstract."
+## "AI Governance: Applied, Not Abstract."
