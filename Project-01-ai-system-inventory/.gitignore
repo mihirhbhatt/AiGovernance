@@ -1,0 +1,25 @@
+# --- Python Specific ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.env
+.venv
+
+# --- IDEs / Editors ---
+# Pylance & VS Code
+.vscode/
+.pylance/
+*.code-workspace
+
+# PyCharm
+.idea/
+
+# --- Operating System ---
+.DS_Store
+Thumbs.db
+
