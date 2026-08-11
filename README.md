@@ -33,8 +33,8 @@ The projects draw on two primary frameworks:
 
 | # | Project | Primary Framework | Key Artefact |
 | --- | --- | --- | --- |
-| 1 | [AI System Inventory & Classification Engine](./project-01-ai-system-inventory/) | EU AI Act · NIST AI RMF | Inventory + classification rationale |
-| 2 | [AI Risk Assessment & Governance Review Pack](./project-02-risk-assessment/) | NIST AI RMF (Map, Measure) | Risk matrix + executive memo |
+| 1 | [AI System Inventory & Classification Engine](./Project-01-ai-system-inventory/) | EU AI Act · NIST AI RMF | Inventory + classification rationale |
+| 2 | [AI Risk Assessment & Governance Review Pack](./Project-02-risk-assessment/) | NIST AI RMF (Map, Measure) | Risk matrix + executive memo |
 | 3 | [Responsible AI Policy & Operating Model] | NIST AI RMF (Govern) | Policy document + process diagram - planned |
 | 4 | [AI Incident Response & Regulatory Escalation] | NIST AI RMF (Manage) · EU AI Act | Incident timeline + RCA template - planned |
 | 5 | [High-Risk AI Documentation & Conformity Pack] | EU AI Act (Article 9–17) | Full conformity documentation - planned |
