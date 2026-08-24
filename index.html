@@ -7,13 +7,15 @@
 <meta name="description" content="Five practical projects demonstrating operational AI governance using the EU AI Act and NIST AI RMF.">
 <style>
   :root {
-    --bg: #0d1117;
-    --panel: #161b22;
-    --border: #30363d;
-    --text: #c9d1d9;
-    --heading: #f0f6fc;
+    --bg: #0b0f14;
+    --panel: #12181f;
+    --panel-hover: #161e27;
+    --border: #232b34;
+    --text: #b6c0cc;
+    --heading: #f4f7fa;
     --accent: #58a6ff;
-    --muted: #8b949e;
+    --accent-soft: rgba(88, 166, 255, 0.12);
+    --muted: #7d8998;
   }
   * { box-sizing: border-box; }
   body {
@@ -21,219 +23,340 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.65;
   }
-  header {
+  a { color: inherit; }
+
+  /* Hero */
+  .hero {
     text-align: center;
-    padding: 4rem 1.5rem 2.5rem;
+    padding: 6rem 1.5rem 3.5rem;
+    background: radial-gradient(circle at 50% 0%, rgba(88,166,255,0.08), transparent 60%);
     border-bottom: 1px solid var(--border);
   }
-  header .title-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-  }
-  header .logo {
-    width: 64px;
-    height: 64px;
-    border-radius: 8px;
-    flex-shrink: 0;
-  }
-  header h1 {
+  .hero h1 {
     color: var(--heading);
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
+    font-size: 2.6rem;
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.02em;
   }
-  header p.subtitle {
+  .hero h1 span { color: var(--accent); }
+  .hero p.tagline {
     color: var(--muted);
-    font-size: 1.1rem;
-    margin: 0.25rem 0;
+    font-size: 1.15rem;
+    max-width: 640px;
+    margin: 0 auto 1.75rem;
   }
-  header blockquote {
-    margin: 1.5rem auto 0;
-    max-width: 600px;
-    font-style: italic;
-    color: var(--accent);
-    border-left: 3px solid var(--accent);
-    padding-left: 1rem;
-    text-align: left;
-  }
-  main {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 2.5rem 1.5rem 4rem;
-  }
-  section {
-    margin-bottom: 3rem;
-  }
-  h2 {
-    color: var(--heading);
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.5rem;
-    font-size: 1.4rem;
-  }
-  p { color: var(--text); }
-  .frameworks {
+  .pill-row {
     display: flex;
-    gap: 1rem;
+    justify-content: center;
     flex-wrap: wrap;
+    gap: 0.6rem;
   }
-  .frameworks div {
-    flex: 1 1 250px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
+  .pill {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid rgba(88,166,255,0.25);
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 500;
   }
-  .frameworks h3 { margin-top: 0; color: var(--accent); font-size: 1rem; }
+
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 4rem;
+  }
+  section { margin-bottom: 4rem; }
+  section > h2 {
+    color: var(--heading);
+    font-size: 1.6rem;
+    margin-bottom: 0.35rem;
+  }
+  section > p.section-lede {
+    color: var(--muted);
+    margin-bottom: 2rem;
+    max-width: 700px;
+  }
+
+  /* Project cards */
   .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
   }
   .card {
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.25rem;
-    transition: border-color 0.15s ease;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
   }
-  .card:hover { border-color: var(--accent); }
-  .card .num {
-    display: inline-block;
-    background: var(--accent);
-    color: #0d1117;
-    font-weight: 700;
-    border-radius: 50%;
-    width: 1.75rem;
-    height: 1.75rem;
-    text-align: center;
-    line-height: 1.75rem;
+  .card:hover {
+    border-color: var(--accent);
+    background: var(--panel-hover);
+    transform: translateY(-2px);
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 0.75rem;
   }
-  .card h3 { margin: 0 0 0.5rem; font-size: 1.05rem; }
-  .card h3 a { color: var(--heading); text-decoration: none; }
+  .card .num {
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .status {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #3fb950;
+    background: rgba(63,185,80,0.12);
+    border: 1px solid rgba(63,185,80,0.3);
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+  }
+  .card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+  }
+  .card h3 a { text-decoration: none; color: var(--heading); }
   .card h3 a:hover { color: var(--accent); }
-  .card .meta { color: var(--muted); font-size: 0.85rem; margin: 0.25rem 0; }
-  .card .artefact { color: var(--text); font-size: 0.9rem; }
+  .card p.desc {
+    color: var(--text);
+    font-size: 0.92rem;
+    flex-grow: 1;
+    margin: 0 0 1rem;
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .tag {
+    background: #1b232c;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    border-radius: 6px;
+    padding: 0.2rem 0.55rem;
+  }
+  .card-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .card-link:hover { text-decoration: underline; }
+
+  /* Framework tables */
   table {
     width: 100%;
     border-collapse: collapse;
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
   }
   th, td {
-    padding: 0.6rem 0.9rem;
+    padding: 0.65rem 0.95rem;
     border-bottom: 1px solid var(--border);
     text-align: left;
-    font-size: 0.92rem;
+    font-size: 0.9rem;
   }
-  th { color: var(--heading); background: #1c2128; }
+  th { color: var(--heading); background: #161d25; }
   tr:last-child td { border-bottom: none; }
+  h3.table-heading { color: var(--heading); font-size: 1.05rem; margin: 2rem 0 0.75rem; }
+  h3.table-heading:first-of-type { margin-top: 0; }
+
+  /* Repo details */
+  .repo-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .repo-info h3 { margin: 0 0 0.35rem; color: var(--heading); font-size: 1.1rem; }
+  .repo-info p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+  .repo-stats {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .repo-stats div { text-align: center; }
+  .repo-stats .stat-value { color: var(--accent); font-weight: 700; font-size: 1.1rem; display: block; }
+  .repo-stats .stat-label { color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .repo-cta {
+    display: inline-block;
+    background: var(--accent);
+    color: #0b0f14;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.55rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+  .repo-cta:hover { opacity: 0.9; }
+
   footer {
     text-align: center;
-    color: var(--muted);
-    padding: 2rem 1rem 3rem;
-    font-size: 0.9rem;
+    padding: 2.5rem 1.5rem 3rem;
     border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
   }
-  code {
-    background: #1c2128;
-    padding: 0.15rem 0.4rem;
-    border-radius: 4px;
-    font-size: 0.9em;
+  footer .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  footer .social-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.35rem 1rem;
+  }
+  footer .social-links a:hover { color: var(--accent); border-color: var(--accent); }
+  footer .built-with {
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #4b5561;
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="title-row">
-    <img src="./assets/logo.png" alt="AI Security logo" class="logo">
-    <h1>AI Governance Portfolio</h1>
+<div class="hero">
+  <h1>AI Governance, <span>Applied Not Abstract.</span></h1>
+  <p class="tagline">Five structured projects that translate the EU AI Act and NIST AI RMF into practical, defensible governance artefacts.</p>
+  <div class="pill-row">
+    <span class="pill">EU AI Act</span>
+    <span class="pill">NIST AI RMF</span>
+    <span class="pill">Risk Assessment</span>
+    <span class="pill">Policy &amp; Operating Model</span>
+    <span class="pill">Incident Response</span>
   </div>
-  <p class="subtitle">5 Practical Projects Demonstrating Operational AI Governance</p>
-  <blockquote>"Reading the EU AI Act is not a project. These are."</blockquote>
-</header>
+</div>
 
 <main>
   <section>
-    <h2>Overview</h2>
-    <p>
-      This repository contains five structured projects that translate AI governance frameworks into
-      practical, defensible artefacts. Each project simulates work that organisations are actively
-      trying to do — and struggling with — in 2026.
-    </p>
-    <p>The projects draw on two primary frameworks:</p>
-    <div class="frameworks">
-      <div>
-        <h3>EU AI Act</h3>
-        <p>Risk-based classification, high-risk system obligations, conformity requirements.</p>
-      </div>
-      <div>
-        <h3>NIST AI Risk Management Framework (AI RMF)</h3>
-        <p>Four core functions: Govern, Map, Measure, Manage.</p>
-      </div>
-    </div>
-  </section>
+    <h2>Project Roadmap</h2>
+    <p class="section-lede">Each project simulates work organisations are actively trying to do — and struggling with — in 2026.</p>
 
-  <section>
-    <h2>The Five Projects</h2>
     <div class="project-grid">
       <div class="card">
-        <span class="num">1</span>
+        <div class="card-top">
+          <span class="num">01</span>
+          <span class="status">Complete</span>
+        </div>
         <h3><a href="./Project-01-ai-system-inventory/">AI System Inventory &amp; Classification Engine</a></h3>
-        <p class="meta">EU AI Act · NIST AI RMF</p>
-        <p class="artefact">Inventory + classification rationale</p>
+        <p class="desc">Inventory of AI systems mapped to EU AI Act risk tiers, with classification rationale for each entry.</p>
+        <div class="tag-row">
+          <span class="tag">EU AI Act</span>
+          <span class="tag">NIST AI RMF</span>
+        </div>
+        <a class="card-link" href="./Project-01-ai-system-inventory/">View Project →</a>
       </div>
+
       <div class="card">
-        <span class="num">2</span>
+        <div class="card-top">
+          <span class="num">02</span>
+          <span class="status">Complete</span>
+        </div>
         <h3><a href="./Project-02-risk-assessment/">AI Risk Assessment &amp; Governance Review Pack</a></h3>
-        <p class="meta">NIST AI RMF (Map, Measure)</p>
-        <p class="artefact">Risk matrix + executive memo</p>
+        <p class="desc">Structured risk matrix and executive governance memo built on the Map and Measure functions.</p>
+        <div class="tag-row">
+          <span class="tag">NIST AI RMF: Map</span>
+          <span class="tag">NIST AI RMF: Measure</span>
+        </div>
+        <a class="card-link" href="./Project-02-risk-assessment/">View Project →</a>
       </div>
+
       <div class="card">
-        <span class="num">3</span>
+        <div class="card-top">
+          <span class="num">03</span>
+          <span class="status">Complete</span>
+        </div>
         <h3><a href="./Project-03-responsible-ai-policy/">Responsible AI Policy &amp; Operating Model</a></h3>
-        <p class="meta">NIST AI RMF (Govern)</p>
-        <p class="artefact">Policy document + process diagram</p>
+        <p class="desc">Policy document and process diagram establishing accountability structures and governance culture.</p>
+        <div class="tag-row">
+          <span class="tag">NIST AI RMF: Govern</span>
+        </div>
+        <a class="card-link" href="./Project-03-responsible-ai-policy/">View Project →</a>
       </div>
+
       <div class="card">
-        <span class="num">4</span>
+        <div class="card-top">
+          <span class="num">04</span>
+          <span class="status">Complete</span>
+        </div>
         <h3><a href="./Project-04-incident-response/">AI Incident Response &amp; Regulatory Escalation</a></h3>
-        <p class="meta">NIST AI RMF (Manage) · EU AI Act</p>
-        <p class="artefact">Incident timeline + RCA template</p>
+        <p class="desc">Incident timeline and root-cause analysis template covering detection through regulatory escalation.</p>
+        <div class="tag-row">
+          <span class="tag">NIST AI RMF: Manage</span>
+          <span class="tag">EU AI Act</span>
+        </div>
+        <a class="card-link" href="./Project-04-incident-response/">View Project →</a>
       </div>
+
       <div class="card">
-        <span class="num">5</span>
+        <div class="card-top">
+          <span class="num">05</span>
+          <span class="status">Complete</span>
+        </div>
         <h3><a href="./Project-05-high-risk-documentation/">High-Risk AI Documentation &amp; Conformity Pack</a></h3>
-        <p class="meta">EU AI Act (Article 9–17)</p>
-        <p class="artefact">Full conformity documentation</p>
+        <p class="desc">Full conformity documentation pack addressing high-risk system obligations under Articles 9–17.</p>
+        <div class="tag-row">
+          <span class="tag">EU AI Act: Art. 9–17</span>
+        </div>
+        <a class="card-link" href="./Project-05-high-risk-documentation/">View Project →</a>
       </div>
     </div>
   </section>
 
   <section>
-    <h2>How to Use This Repository</h2>
-    <p>Each project folder contains:</p>
-    <ul>
-      <li><code>README.md</code> — scenario context, objectives, and how artefacts connect to frameworks</li>
-      <li><strong>Artefacts</strong> — the actual governance documents (policies, assessments, memos, inventories)</li>
-    </ul>
-    <p>
-      These are designed to be read in order — each project builds conceptual depth — but they are also
-      standalone. If you are preparing for a specific interview or role, navigate directly to the most
-      relevant project.
-    </p>
+    <h2>Repository Details</h2>
+    <p class="section-lede">Each project folder is standalone — jump directly to the one most relevant to you, or read them in order for full context.</p>
+    <div class="repo-panel">
+      <div class="repo-info">
+        <h3>mihirhbhatt / AiGovernance</h3>
+        <p>Governance documents, risk assessments, and policy artefacts for EU AI Act &amp; NIST AI RMF compliance.</p>
+      </div>
+      <div class="repo-stats">
+        <div>
+          <span class="stat-value">5</span>
+          <span class="stat-label">Projects</span>
+        </div>
+        <div>
+          <span class="stat-value">2</span>
+          <span class="stat-label">Frameworks</span>
+        </div>
+      </div>
+      <a class="repo-cta" href="https://github.com/mihirhbhatt/AiGovernance" target="_blank" rel="noopener">View Repository</a>
+    </div>
   </section>
 
   <section>
     <h2>Framework Quick Reference</h2>
 
-    <h3>EU AI Act — Risk Tiers</h3>
+    <h3 class="table-heading">EU AI Act — Risk Tiers</h3>
     <table>
       <thead><tr><th>Tier</th><th>Description</th><th>Examples</th></tr></thead>
       <tbody>
@@ -244,7 +367,7 @@
       </tbody>
     </table>
 
-    <h3 style="margin-top:1.5rem;">NIST AI RMF — Core Functions</h3>
+    <h3 class="table-heading">NIST AI RMF — Core Functions</h3>
     <table>
       <thead><tr><th>Function</th><th>Purpose</th></tr></thead>
       <tbody>
@@ -258,8 +381,11 @@
 </main>
 
 <footer>
-  <p>"AI Governance: Applied, Not Abstract."</p>
-  <p><a href="https://github.com/mihirhbhatt/AiGovernance" style="color: var(--accent);">View on GitHub</a></p>
+  <div class="social-links">
+    <a href="https://github.com/mihirhbhatt" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/mihirhbhatt/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+  <p>&copy; 2026 Mihir Bhatt. AI Governance: Applied, Not Abstract.</p>
 </footer>
 
 </body>
