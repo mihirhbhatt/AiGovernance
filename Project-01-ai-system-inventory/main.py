@@ -14,7 +14,7 @@ class GovernanceEngine:
         df = pd.DataFrame(self.data)
         df['nist_avg'] = df['scores'].apply(lambda x: sum(x.values())/4)
         df.to_csv("exports/ai-system-inventory.csv", index=False, encoding="utf-8")
-        print("✅ Exported CSV Inventory.")
+        print("Exported CSV Inventory.")
 
     def export_classification(self):
         """Creates the detailed Legal/EU AI Act report."""
@@ -48,7 +48,7 @@ class GovernanceEngine:
             f.write("## 3. Summary Table\n\n| ID | System | Classification | Status | Priority |\n| :--- | :--- | :--- | :--- | :--- |\n")
             for s in self.data:
                 f.write(f"| {s['id']} | {s['name']} | {s['tier']} | {s['status']} | {s['priority']} |\n")
-        print("✅ Exported Classification Report.")
+        print("Exported Classification Report.")
 
     def export_nist_gap(self):
         """Creates the technical NIST RMF maturity report."""
@@ -61,7 +61,7 @@ class GovernanceEngine:
                 f.write(f"| GOVERN | MAP | MEASURE | MANAGE |\n| :---: | :---: | :---: | :---: |\n")
                 s = sys['scores']
                 f.write(f"| {s['gov']} | {s['map']} | {s['mea']} | {s['man']} |\n\n")
-        print("✅ Exported NIST Gap Analysis.")
+        print("Exported NIST Gap Analysis.")
 
     def export_dashboard(self):
         """Creates the high-level summary for Executives."""
@@ -75,7 +75,7 @@ class GovernanceEngine:
             for s in self.data:
                 if s['priority'] == "Critical":
                     f.write(f"- [{s['id']}] {s['name']}: {s['gaps']}\n")
-        print("✅ Exported Executive Dashboard.")
+        print("Exported Executive Dashboard.")
 
 if __name__ == "__main__":
     
@@ -87,4 +87,4 @@ if __name__ == "__main__":
     engine.export_nist_gap()
     engine.export_dashboard()
     
-    print(f"\n🚀 Success! All 4 governance reports are ready in the /exports/ folder.")
+    print("\nSuccess! All 4 governance reports are ready in the /exports/ folder.")

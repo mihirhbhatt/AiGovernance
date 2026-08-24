@@ -22,7 +22,7 @@ def run_audit():
     if not memo_content or not memo_content.strip():
         raise RuntimeError(f"No content generated for {file_path}.")
 
-    print(f"🚀 Success: {file_path} created with risk assessment content.")
+    print(f"Success: {file_path} created with risk assessment content.")
 
 if __name__ == "__main__":
     run_audit()
